@@ -26,3 +26,11 @@
   command: "td-agent-gem install {{ item }}"
   with_items: "{{ fluentd_plugins }}"
   when: not item in plugins_list.stdout
+
+- name: Fluentd | Create fluentd directory for side files
+  file:
+    path: /var/lib/fluentd
+    owner: "td-agent"
+    group: "td-agent"
+    mode: 0755
+    state: directory
