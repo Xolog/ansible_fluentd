@@ -1,0 +1,5 @@
+---
+- name: Restart Fluentd
+  service:
+    name: td-agent
+    state: restarted

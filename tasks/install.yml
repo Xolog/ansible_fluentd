@@ -1,0 +1,28 @@
+---
+- name: Fluentd | Install repo apt key
+  apt_key:
+    url: https://packages.treasuredata.com/GPG-KEY-td-agent
+    state: present
+
+- name: Fluentd | Add repository
+  apt_repository:
+    repo: deb http://packages.treasuredata.com/2/ubuntu/xenial/ xenial contrib
+    state: present
+
+- name: Fluentd | Install fluentd
+  apt:
+    update_cache: yes
+    name: "td-agent"
+    state: present
+  notify:
+    - Restart Fluentd
+
+- name: Fluentd | Register plugins list
+  command: "td-agent-gem list"
+  register: plugins_list
+  changed_when: false
+
+- name: Fluentd | Install fluentd plugins
+  command: "td-agent-gem install {{ item }}"
+  with_items: "{{ fluentd_plugins }}"
+  when: not item in plugins_list.stdout

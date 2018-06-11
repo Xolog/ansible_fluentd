@@ -1,0 +1,8 @@
+---
+fluentd_plugins: []
+fluentd_config:
+  - directive: system
+    data:
+      - |
+        process_name: fluentd
+        log_level: warning
