@@ -3,3 +3,5 @@
   template:
     src: td-agent.conf
     dest: /etc/td-agent/td-agent.conf
+  notify:
+    - Restart Fluentd
