@@ -4,10 +4,19 @@
     url: https://packages.treasuredata.com/GPG-KEY-td-agent
     state: present
 
-- name: Fluentd | Add repository
+- name: Fluentd | Add repository bionic
   apt_repository:
+    repo:  deb http://packages.treasuredata.com/4/ubuntu/bionic/ bionic contrib
+    state: present
+  when: (ansible_facts['distribution'] == "Ubuntu" and ansible_distribution_release|string == 'bionic')
+          
+- name: Fluentd | Add repository focal
+  apt_repository:
+    # repo: http://packages.treasuredata.com/2/ubuntu/xenial/ xenial contrib
     repo:  deb http://packages.treasuredata.com/4/ubuntu/focal/ focal contrib
     state: present
+  when: (ansible_facts['distribution'] == "Ubuntu" and ansible_distribution_release|string == 'focal')
+
 
 - name: Fluentd | Install fluentd
   apt:
