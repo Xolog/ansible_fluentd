@@ -6,7 +6,7 @@
 
 - name: Fluentd | Add repository
   apt_repository:
-    repo: deb http://packages.treasuredata.com/2/ubuntu/xenial/ xenial contrib
+    repo: deb http://packages.treasuredata.com/4/ubuntu/{{ ansible_distribution_release|string }}/ {{ ansible_distribution_release|string }} contrib
     state: present
 
 - name: Fluentd | Install fluentd
@@ -21,6 +21,13 @@
   command: "td-agent-gem list"
   register: plugins_list
   changed_when: false
+  
+- name: Add the user td-agent to systemd-journal adm,syslog group
+  user:
+    name:  td-agent
+    groups: systemd-journal,adm,syslog
+    append: yes
+  tags: user
 
 - name: Fluentd | Install fluentd plugins
   command: "td-agent-gem install {{ item }}"
