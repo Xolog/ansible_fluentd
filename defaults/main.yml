@@ -1,4 +1,7 @@
 ---
+# true if td-agent v4 is installed on the host
+fluentd_migrate_to_v5: false
+
 fluentd_plugins: []
 fluentd_config:
   - directive: system

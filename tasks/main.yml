@@ -1,4 +1,7 @@
 ---
+- include_tasks: migrate-to-v5.yml
+  when: fluentd_migrate_to_v5 | bool
+
 - include_tasks: install.yml
   tags:
     - install
