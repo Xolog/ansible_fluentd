@@ -6,7 +6,7 @@
 
 - name: Fluentd | Add repository
   apt_repository:
-    repo: deb http://packages.treasuredata.com/5/ubuntu/{{ ansible_distribution_release|string }}/ {{ ansible_distribution_release|string }} contrib
+    repo: deb http://packages.treasuredata.com/lts/5/ubuntu/{{ ansible_distribution_release|string }}/ {{ ansible_distribution_release|string }} contrib
     state: present
 
 - name: Fluentd | Install fluentd
