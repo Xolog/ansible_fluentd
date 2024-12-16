@@ -2,4 +2,5 @@
 - name: Restart Fluentd
   service:
     name: fluentd
+    enabled: true
     state: restarted
