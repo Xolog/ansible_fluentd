@@ -1,7 +1,7 @@
 ---
 - name: Fluentd | Ensure main config file
   template:
-    src: td-agent.conf
-    dest: /etc/td-agent/td-agent.conf
+    src: fluentd.conf
+    dest: /etc/fluentd/fluentd.conf
   notify:
     - Restart Fluentd
