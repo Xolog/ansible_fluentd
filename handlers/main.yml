@@ -1,5 +1,6 @@
 ---
 - name: Restart Fluentd
   service:
-    name: td-agent
+    name: fluentd
+    enabled: true
     state: restarted

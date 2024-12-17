@@ -1,0 +1,20 @@
+---
+- name: Fluentd | Purge td-agent
+  apt:
+    name: td-agent
+    state: absent
+    autoremove: true
+    clean: true
+    purge: true
+  when: fluentd_migrate_to_v5 | bool
+
+- name: Fluentd | Remove old conf file
+  file:
+    state: absent 
+    path: /etc/fluent/td-agent.conf
+  when: fluentd_del_old_conf | bool
+
+- name: Fluentd | Remove repo
+  apt_repository:
+    repo: deb http://packages.treasuredata.com/4/ubuntu/{{ ansible_distribution_release|string }}/ {{ ansible_distribution_release|string }} contrib
+    state: absent
