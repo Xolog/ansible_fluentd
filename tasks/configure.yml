@@ -2,6 +2,6 @@
 - name: Fluentd | Ensure main config file
   template:
     src: fluentd.conf
-    dest: /etc/fluentd/fluentd.conf
+    dest: /etc/fluent/fluentd.conf
   notify:
     - Restart Fluentd
