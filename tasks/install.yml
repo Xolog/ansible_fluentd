@@ -47,10 +47,3 @@
     group: "fluentd"
     mode: 0755
     state: directory
-
-- name: Fluentd | Purge td-agent
-  apt:
-    name: "td-agent"
-    autoremove: yes
-    purge: true
-  when: fluentd_migrate_to_v5 | bool
