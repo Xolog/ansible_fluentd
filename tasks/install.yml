@@ -30,7 +30,7 @@
   
 - name: Fluentd | Add the user td-agent to systemd-journal adm,syslog group
   user:
-    name:  fluentd
+    name:  _fluentd
     groups: systemd-journal,adm,syslog
     append: yes
   tags: user
@@ -43,7 +43,7 @@
 - name: Fluentd | Create fluentd directory for side files
   file:
     path: /var/lib/fluentd
-    owner: "fluentd"
-    group: "fluentd"
+    owner: "_fluentd"
+    group: "_fluentd"
     mode: 0755
     state: directory
