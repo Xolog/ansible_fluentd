@@ -16,7 +16,7 @@ fluentd_del_old_conf: false
 
 # for ssl 
 ssl_directory_path: "/etc/ssl_certs"
-domen_directory: "example.com"
+domain_directory: "example.com"
 
 fluentd_plugins: []
 fluentd_config:
