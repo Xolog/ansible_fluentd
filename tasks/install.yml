@@ -1,10 +1,4 @@
 ---
-- name: Fluentd | Stop fluent service
-  service:
-    name: td-agent
-    state: stopped
-  when: fluentd_migrate_to_v5 | bool
-
 - name: Fluentd | Install repo apt key
   apt_key:
     url: https://packages.treasuredata.com/GPG-KEY-fluent-package
