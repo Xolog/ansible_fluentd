@@ -28,7 +28,7 @@
   register: plugins_list
   changed_when: false
   
-- name: Fluentd | Add the user td-agent to systemd-journal adm,syslog group
+- name: Fluentd | Add the user fluentd to systemd-journal adm,syslog group
   user:
     name:  _fluentd
     groups: systemd-journal,adm,syslog
