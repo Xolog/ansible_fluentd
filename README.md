@@ -10,13 +10,21 @@ Ansible 2.4
 #### Role Variables
 
 ```yaml
+# true if td-agent v4 is installed on the host
+fluentd_migrate_to_v5: false
+fluentd_del_old_conf: false
+
+# for ssl 
+ssl_directory_path: "/etc/ssl_certs"
+domain_directory: "example.com"
+
 fluentd_plugins: []
 fluentd_config:
   - directive: system
     data:
       - |
-        process_name: fluentd
-        log_level: warning
+        process_name fluentd
+        log_level warn
 ```
 
 #### Dependencies
