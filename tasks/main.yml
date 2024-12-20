@@ -2,10 +2,10 @@
   tags:
     - install
 
-- include_tasks: configure.yml
-  tags:
-    - configure
-
 - include_tasks: clean.yml
   tags:
     - clean
+
+- include_tasks: configure.yml
+  tags:
+    - configure

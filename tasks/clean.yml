@@ -18,3 +18,9 @@
   apt_repository:
     repo: deb http://packages.treasuredata.com/4/ubuntu/{{ ansible_distribution_release|string }}/ {{ ansible_distribution_release|string }} contrib
     state: absent
+
+- name: Fluentd | Remove td-agent user
+  user:
+    name: td-agent
+    state: absent
+    remove: yes
