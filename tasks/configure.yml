@@ -4,4 +4,4 @@
     src: fluentd.conf
     dest: /etc/fluent/fluentd.conf
   notify:
-    - Restart Fluentd
+    - Check Fluentd Configuration

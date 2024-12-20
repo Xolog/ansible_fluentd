@@ -1,5 +1,12 @@
 ---
-- name: Restart Fluentd
+- name: Check Fluentd Configuration
+  command: fluentd --dry-run -c /etc/fluent/fluentd.conf
+  register: config_check
+  failed_when: config_check.rc != 0
+  notify:
+    - Restart and enabled Fluentd
+
+- name: Restart and enabled Fluentd
   service:
     name: fluentd
     enabled: true
