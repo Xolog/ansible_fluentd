@@ -50,12 +50,12 @@
 
 - name: Fluentd | Check if the directory for ssl exists
   stat:
-    path: "{{ ssl_directory_path }}/{{ domen_directory }}"
+    path: "{{ ssl_directory_path }}/{{ domain_directory }}"
   register: dir_stat
 
 - name: Fluentd | Find certs in the directory
   find:
-    paths: "{{ ssl_directory_path }}/{{ domen_directory }}"
+    paths: "{{ ssl_directory_path }}/{{ domain_directory }}"
     patterns: "*.pem"
   when: dir_stat.stat.exists
   register: cert_files
@@ -69,6 +69,6 @@
 
 - name: Fluentd | Set 755 permissions for the directory
   file:
-    path: "{{ ssl_directory_path }}/{{ domen_directory }}"
+    path: "{{ ssl_directory_path }}/{{ domain_directory }}"
     mode: '0755'
   when: dir_stat.stat.exists
