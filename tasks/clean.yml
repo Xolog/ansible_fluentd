@@ -1,4 +1,9 @@
 ---
+- name: Fluentd | Stop fluent service
+  service:
+    name: td-agent
+    state: stopped
+
 - name: Fluentd | Purge td-agent
   apt:
     name: td-agent
@@ -6,7 +11,19 @@
     autoremove: true
     clean: true
     purge: true
-  when: fluentd_migrate_to_v5 | bool
+
+- name: Fluentd | Remove lines containing 'td-agent' from dpkg statoverride
+  lineinfile:
+    path: /var/lib/dpkg/statoverride
+    regexp: '^.*td-agent.*$'
+    state: absent
+  backup: yes
+
+- name: Fluentd | Remove td-agent user
+  user:
+    name: td-agent
+    state: absent
+    remove: yes
 
 - name: Fluentd | Remove old conf file
   file:

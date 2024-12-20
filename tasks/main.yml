@@ -2,10 +2,12 @@
   tags:
     - install
 
-- include_tasks: configure.yml
-  tags:
-    - configure
-
 - include_tasks: clean.yml
   tags:
     - clean
+  when: fluentd_migrate_to_v5 | bool
+
+
+- include_tasks: configure.yml
+  tags:
+    - configure
