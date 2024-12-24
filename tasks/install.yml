@@ -1,21 +1,21 @@
 ---
-- name: Fluentd | Install repo apt key
-  apt_key:
-    url: https://packages.treasuredata.com/GPG-KEY-fluent-package
+- name: Fluentd | Download Fluentd apt-source package
+  ansible.builtin.get_url:
+    url: https://packages.treasuredata.com/lts/5/ubuntu/{{ ansible_distribution_release|string }}/pool/contrib/f/fluent-lts-apt-source/fluent-lts-apt-source_2023.7.29-1_all.deb
+    dest: /tmp/fluent-apt-source.deb
+
+- name: Fluentd | Install Fluentd apt-source package
+  ansible.builtin.apt:
+    deb: /tmp/fluent-apt-source.deb
     state: present
 
-- name: Fluentd | Add repository
-  apt_repository:
-    repo: deb http://packages.treasuredata.com/lts/5/ubuntu/{{ ansible_distribution_release|string }}/ {{ ansible_distribution_release|string }} contrib
-    state: present
-
-- name: Fluentd | Install fluentd
-  apt:
+- name: Fluentd | Install Fluentd package
+  ansible.builtin.apt:
     update_cache: yes
-    name: "fluent-package"
+    name: fluent-package
     state: present
   notify:
-    - Restart Fluentd
+    - Check Fluentd Configuration
 
 - name: Fluentd | Register plugins list
   command: "fluent-gem list"
