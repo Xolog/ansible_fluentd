@@ -5,3 +5,13 @@
     dest: /etc/fluent/fluentd.conf
   notify:
     - Check Fluentd Configuration
+
+- name: Specify logrotate.d rotation for fluentd unit
+  ansible.builtin.lineinfile:
+    path: /etc/logrotate.d/fluentd
+    regexp: '.*rotate .*'
+    line: '  rotate {{ fluentd_logrotate_rotation }}'
+    state: present
+  when: fluentd_logrotate_rotation is defined
+  tags:
+    - logrotate
