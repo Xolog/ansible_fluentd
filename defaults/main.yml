@@ -8,7 +8,7 @@ ssl_directory_path: "/etc/ssl_certs"
 domain_directory: "example.com"
 
 # logrotate.d rotation
-# fluentd_logrotate_rotation: 3
+fluentd_logrotate_rotation: 3
 
 fluentd_plugins: []
 fluentd_config:

@@ -12,6 +12,5 @@
     regexp: '.*rotate .*'
     line: '  rotate {{ fluentd_logrotate_rotation }}'
     state: present
-  when: fluentd_logrotate_rotation is defined
   tags:
     - logrotate
