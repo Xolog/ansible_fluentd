@@ -7,13 +7,16 @@ fluentd_del_old_conf: false
 ssl_directory_path: "/etc/ssl_certs"
 domain_directory: "example.com"
 
-# logrotate.d rotation
-fluentd_logrotate_rotation: 3
-
 fluentd_plugins: []
 fluentd_config:
   - directive: system
     data:
       - |
         process_name fluentd
-        log_level warn
+          log_level warn
+
+          # https://docs.fluentd.org/deployment/logging#log-rotation-setting
+          <log>
+            rotate_age 5
+            rotate_size 1048576
+          </log>
