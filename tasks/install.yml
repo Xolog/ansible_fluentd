@@ -41,6 +41,15 @@
     group: "_fluentd"
     mode: 0755
     state: directory
+    
+- name: Fluentd | Set permissions for fluentd log directory 
+  file:
+    path: /var/log/fluent
+    owner: "_fluentd"
+    group: "_fluentd"
+    mode: 0775
+    state: directory
+    recurse: true
 
 - name: Fluentd | Check if the directory for ssl exists
   stat:
