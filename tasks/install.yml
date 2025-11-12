@@ -66,3 +66,12 @@
     path: "{{ ssl_directory_path }}/{{ domain_directory }}"
     mode: '0755'
   when: dir_stat.stat.exists
+
+- name: Fluentd | Set permissions for fluentd log directory 
+  file:
+    path: /var/log/fluent
+    owner: "_fluentd"
+    group: "_fluentd"
+    mode: 0775
+    state: directory
+    recurse: true
