@@ -67,9 +67,15 @@
     mode: '0755'
   when: dir_stat.stat.exists
 
+- name: Fluentd | Create tmp dir for fluentd files
+  file:
+    path: "{{ log_path }}/tmp"
+    state: directory
+    mode: 0775
+
 - name: Fluentd | Set permissions for fluentd log directory 
   file:
-    path: /var/log/fluent
+    path: "{{ log_path }}"
     owner: "_fluentd"
     group: "_fluentd"
     mode: 0775
