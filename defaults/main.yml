@@ -7,6 +7,8 @@ fluentd_del_old_conf: false
 ssl_directory_path: "/etc/ssl_certs"
 domain_directory: "example.com"
 
+log_path: /var/log/fluent
+
 fluentd_plugins: []
 fluentd_config:
   - directive: system
