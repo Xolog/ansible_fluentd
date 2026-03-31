@@ -9,7 +9,11 @@ domain_directory: "example.com"
 
 log_path: /var/log/fluent
 
-fluentd_plugins: []
+fluentd_plugins:
+  - fluent-plugin-grafana-loki
+  - fluent-plugin-systemd
+  - fluent-plugin-prometheus
+
 fluentd_config:
   - directive: system
     data:
@@ -22,3 +26,19 @@ fluentd_config:
             rotate_age 5
             rotate_size 1048576
           </log>
+
+  - directive: source
+    data:
+      - |
+        @type prometheus
+          port 24231
+
+  - directive: source
+    data:
+      - |
+        @type prometheus_monitor
+
+  - directive: source
+    data:
+      - |
+        @type prometheus_output_monitor
