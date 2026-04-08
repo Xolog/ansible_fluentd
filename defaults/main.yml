@@ -9,6 +9,8 @@ domain_directory: "example.com"
 
 log_path: /var/log/fluent
 
+install_url: https://fluentd.cdn.cncf.io/lts/6/ubuntu/{{ ansible_distribution_release|string }}/pool/contrib/f/fluent-lts-apt-source/fluent-lts-apt-source_2025.9.29-1_all.deb
+
 fluentd_plugins:
   - fluent-plugin-grafana-loki
   - fluent-plugin-systemd

@@ -1,7 +1,7 @@
 ---
 - name: Fluentd | Download Fluentd apt-source package
   ansible.builtin.get_url:
-    url: https://packages.treasuredata.com/lts/5/ubuntu/{{ ansible_distribution_release|string }}/pool/contrib/f/fluent-lts-apt-source/fluent-lts-apt-source_2023.7.29-1_all.deb
+    url: "{{ install_url }}"
     dest: /tmp/fluent-apt-source.deb
 
 - name: Fluentd | Install Fluentd apt-source package
